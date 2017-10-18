@@ -14,7 +14,7 @@ endfunction
 
 function! SyntaxCheckers_haskell_ghc_mod_GetLocList() dict
     let makeprg = self.makeprgBuild({
-        \ 'exe': self.getExecEscaped() . (s:ghc_mod_new ? ' --boundary=""' : '') . ' check'})
+        \ 'exe': self.getExecEscaped() . ' exec ghc-mod' . (s:ghc_mod_new ? ' --boundary=""' : '') . ' check'})
 
     let errorformat =
         \ '%-G%\s%#,' .
@@ -37,7 +37,7 @@ endfunction
 call g:SyntasticRegistry.CreateAndRegisterChecker({
     \ 'filetype': 'haskell',
     \ 'name': 'ghc_mod',
-    \ 'exec': 'stack exec ghc-mod' })
+    \ 'exec': 'stack' })
 
 let &cpo = s:save_cpo
 unlet s:save_cpo
